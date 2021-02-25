@@ -19,8 +19,6 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddevchallenge.ui.NavigationViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -28,8 +26,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val appContainer = (application as PuppadoptApplication).container
         setContent {
-            PuppyApp(navigationViewModel = navigationViewModel)
+            PuppyApp(appContainer = appContainer, navigationViewModel = navigationViewModel)
         }
     }
 

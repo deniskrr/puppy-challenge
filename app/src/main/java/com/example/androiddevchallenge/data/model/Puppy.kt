@@ -13,28 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.utils
+package com.example.androiddevchallenge.data.model
 
-import android.os.Bundle
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.SavedStateHandle
+import androidx.annotation.DrawableRes
 
-fun <T> SavedStateHandle.getMutableStateOf(
-    key: String,
-    default: T,
-    save: (T) -> Bundle,
-    restore: (Bundle) -> T
-): MutableState<T> {
-    val bundle: Bundle? = get(key)
-    val initial = if (bundle == null) {
-        default
-    } else {
-        restore(bundle)
-    }
-    val state = mutableStateOf(initial)
-    setSavedStateProvider(key) {
-        save(state.value)
-    }
-    return state
+data class Puppy(
+    val id: String,
+    val name: String,
+    val race: String,
+    val age: Int,
+    val gender: Gender,
+    val address: String,
+    @DrawableRes val imageId: Int,
+)
+
+enum class Gender {
+    MALE, FEMALE
 }
