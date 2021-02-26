@@ -13,17 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui
+package com.example.androiddevchallenge.ui.dashboard
 
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
-import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import com.example.androiddevchallenge.data.model.Puppy
 import com.example.androiddevchallenge.data.puppies.PuppyRepository
+import com.example.androiddevchallenge.ui.Screen
 import com.example.androiddevchallenge.ui.state.UiState
 import com.example.androiddevchallenge.utils.produceUiState
 
@@ -44,6 +46,7 @@ fun DashboardScreen(
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DashboardScreen(
     puppies: UiState<List<Puppy>>,
@@ -54,11 +57,19 @@ fun DashboardScreen(
         scaffoldState = scaffoldState,
         content = {
             if (puppies.data != null) {
-                LazyColumn {
-                    items(puppies.data) {
-                        Text(it.name)
+                LazyVerticalGrid(
+                    cells = GridCells.Fixed(2),
+                    content = {
+                        items(puppies.data) {
+                            PuppyCard(
+                                puppy = it,
+                                onClick = {
+                                    navigateTo(Screen.PuppyProfile(it.id))
+                                }
+                            )
+                        }
                     }
-                }
+                )
             }
         }
     )

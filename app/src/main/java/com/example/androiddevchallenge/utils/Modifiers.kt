@@ -13,20 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.data.model
+package com.example.androiddevchallenge.utils
 
-import androidx.annotation.DrawableRes
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 
-data class Puppy(
-    val id: String,
-    val name: String,
-    val race: String,
-    val age: Int,
-    val gender: Gender,
-    val address: String,
-    @DrawableRes val imageId: Int,
-)
-
-enum class Gender(val stringRepresentation: String) {
-    MALE("Male"), FEMALE("Female")
+fun Modifier.scrim(colors: List<Color>): Modifier = drawWithContent {
+    drawContent()
+    drawRect(Brush.verticalGradient(colors))
 }

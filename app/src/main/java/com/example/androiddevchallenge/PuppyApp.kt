@@ -21,10 +21,10 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import com.example.androiddevchallenge.data.AppContainer
 import com.example.androiddevchallenge.data.puppies.PuppyRepository
-import com.example.androiddevchallenge.ui.DashboardScreen
 import com.example.androiddevchallenge.ui.NavigationViewModel
 import com.example.androiddevchallenge.ui.PuppyProfileScreen
 import com.example.androiddevchallenge.ui.Screen
+import com.example.androiddevchallenge.ui.dashboard.DashboardScreen
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
