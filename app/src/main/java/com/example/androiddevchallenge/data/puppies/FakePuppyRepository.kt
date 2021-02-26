@@ -18,6 +18,7 @@ package com.example.androiddevchallenge.data.puppies
 import com.example.androiddevchallenge.data.Result
 import com.example.androiddevchallenge.data.model.Puppy
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.withContext
@@ -27,6 +28,9 @@ class FakePuppyRepository : PuppyRepository {
     private val adopted = MutableStateFlow<Set<String>>(setOf())
 
     override suspend fun getPuppy(puppyId: String): Result<Puppy> {
+        // Simulate loading
+        delay(1000)
+
         return withContext(Dispatchers.IO) {
             val puppy = puppies.find { it.id == puppyId }
             if (puppy == null) {
@@ -38,6 +42,9 @@ class FakePuppyRepository : PuppyRepository {
     }
 
     override suspend fun getPuppies(): Result<List<Puppy>> {
+        // Simulate loading
+        delay(1000)
+
         return Result.Success(puppies)
     }
 

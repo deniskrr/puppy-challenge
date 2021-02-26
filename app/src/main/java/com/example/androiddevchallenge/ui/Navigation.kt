@@ -28,7 +28,7 @@ enum class ScreenName { DASHBOARD, PROFILE }
 
 sealed class Screen(val id: ScreenName) {
     object Dashboard : Screen(ScreenName.DASHBOARD)
-    data class PuppyProfile(val postId: String) : Screen(ScreenName.PROFILE)
+    data class PuppyProfile(val puppyId: String) : Screen(ScreenName.PROFILE)
 }
 
 private const val SIS_SCREEN = "sis_screen"
@@ -39,7 +39,7 @@ private fun Screen.toBundle(): Bundle {
     return bundleOf(SIS_NAME to id.name).also {
         // add extra keys for various types here
         if (this is Screen.PuppyProfile) {
-            it.putString(SIS_PUPPY, postId)
+            it.putString(SIS_PUPPY, puppyId)
         }
     }
 }
